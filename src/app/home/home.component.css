@@ -1,0 +1,32 @@
+img {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+}
+.p1 {
+    text-align: start;
+    padding: 10px;
+    margin-left: 30px;
+}
+.align {
+    color: #000000;
+    text-decoration: underline;
+}
+.btn {
+    font-size: 16px;
+    color: #000000;
+    border-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    width:800px;
+}
+.button-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    height: 35px;
+}
+.lezem_nefsekhha{
+    cursor: pointer;
+    outline-style:groove;
+}

@@ -1,0 +1,23 @@
+.carousel{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+}
+.container{
+    margin-left: auto;
+    margin-right: auto;
+     
+   
+    text-align: center;
+    padding-top: 60px;
+
+    
+}
+.container a {
+   margin: 0 50px;
+   color: black;
+   text-decoration: none;
+   
+    
+}

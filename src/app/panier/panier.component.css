@@ -1,0 +1,44 @@
+    
+
+.cart-container {
+    text-align: center;
+    width: 60%;
+    height: 760px;
+    max-width: 100%;
+    border: 1px solid black;
+    padding: 50px;
+    margin-left: 17%;
+}
+
+h2 {
+    font-size: 19px;
+    margin-bottom: 20px;
+    text-align: start;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid rgb(0, 0, 0);
+    margin-bottom: 30px;
+}
+
+.empty-cart-message {
+    font-size: 18px;
+    margin-bottom: 30px;
+    margin-top: 100px;
+}
+
+.shop-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 290px;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.shop-button:hover {
+    background-color: #3a3a3a;
+}
