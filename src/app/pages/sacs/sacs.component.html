@@ -1,0 +1,97 @@
+<p class="cc">Catalogue/Femme/Sacs</p>
+
+<div class="card-container1">
+    <div class="sidebar">
+        <div class="categories">
+            <h3>CATEGORIES:</h3>
+            <ul class="child">
+                <li routerLink="/accessoire">ACCESSOIRES</li>
+                <li routerLink="/sacs">SACS</li>
+                <li>VÊTEMENTS
+                    <ul class="child">
+                        <li routerLink="/chemise-femme">chemises</li>
+                        <li routerLink="/manteau-vestes-femme">Manteaux & Vestes</li>
+                        <li routerLink="/pull-femme">Pulls</li>
+                        <li>Complets & Blazers</li>
+                        <li>Jeans</li>
+                        <li>Pantalons</li>
+                        <li>Shorts</li>
+                        <li>Sous-Vêtements</li>
+                        <li>Tee shirts & Polos</li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <div class="creators">
+            <h3>CRÉATEURS:</h3>
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <div class="card" style="width: 30rem;">
+        <img src="assets/images/sac-femme-1.png" class="card-img-top" alt="sac femme"
+            [routerLink]="['/achat_hors_vetement', '852']">
+        <div class="card-body">
+            <h5 class="card-title">Sac a main femme:</h5>
+            <p class="card-text">Sac a main tendance pour tout les genres</p>
+            <p>Référence: 852</p>
+            <p>Prix: 120DT</p>
+            <p>Couleurs disponible: Beige, Noir, Rouge, Blanc, Marron</p>
+            <p>Taille: L, M, S</p>
+            <div class="btn">
+                <button class="btn btn-outline-secondary" routerLink="/paniersproduits">Ajouter au panier</button>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="width: 30rem;">
+        <img src="assets/images/sac-femme-2.png" class="card-img-top" alt="sac femme"
+            [routerLink]="['/achat_hors_vetement', '003']">
+        <div class="card-body">
+            <h5 class="card-title">Sac a main femme:</h5>
+            <p class="card-text">Sac a main pour femmes chic </p>
+            <p>Référence: 003</p>
+            <p>Prix: 150DT</p>
+            <p>Couleurs disponible: Marron, Noir </p>
+            <p>Taille: L, M, S </p>
+            <div class="btn">
+                <button class="btn btn-outline-secondary" routerLink="/paniersproduits">Ajouter au panier</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card" style="width: 30rem;">
+        <img src="assets/images/sac-femme-3.png" class="card-img-top" alt="sac femme"
+            [routerLink]="['/achat_hors_vetement', '242']">
+        <div class="card-body">
+            <h5 class="card-title">Sac a main tendance :</h5>
+            <p class="card-text">Sac en plusieurs Couleurs pour un meilleur look</p>
+            <p>Référence: 242</p>
+            <p>Prix: 180DT</p>
+            <p>Couleurs disponible: Beige, Noir</p>
+            <p>Taille: L, M, S</p>
+            <div class="btn">
+                <button class="btn btn-outline-secondary" routerLink="/paniersproduits">Ajouter au panier</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngFor="let item of produit " class="card" style="width: 30rem;">
+    <img [src]="item.image_url" class="card-img-top" alt="Image du produit">
+    <div class="card-body">
+        <h5 class="card-title">{{item.nom-produit}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <p>Référence:{{item.references}}</p>
+        <p>Prix:{{item.prix}}€</p>
+        <p>Couleur{{item.couleurs}}</p>
+        <p>Tailles:{{item.tailles}}</p>
+        <div class="btn">
+            <button class="btn btn-outline-secondary" (click)="ajouteraupanier(item.id, 1)">Ajouter au panier</button>
+        </div>
+    </div>
+
+</div>

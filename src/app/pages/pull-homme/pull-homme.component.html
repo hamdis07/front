@@ -1,0 +1,90 @@
+<p class="cc">Catalogue/Homme/Pulls</p>
+
+<div class="card-container1">
+    <div class="sidebar">
+        <div class="categories">
+            <h3>CATEGORIES:</h3>
+            <ul class="child">
+                <li routerLink="/sac-homme">SACS HOMME</li>
+                <li>VÊTEMENTS
+                    <ul class="child">
+                        <li routerLink="/pull-homme">Pulls</li>
+                        <li routerLink="/manteau-vestes-homme">Manteaux & Vestes</li>
+                        <li routerLink="/jeans-homme">Jeans</li>
+                        <li>Complets & Blazers</li>
+                        <li>Pantalons</li>
+                        <li>Shorts</li>
+                        <li>Sous-Vêtements</li>
+                    </ul>
+                </li>
+            </ul>
+            
+        </div>
+        <div class="creators">
+            <h3>CRÉATEURS:</h3>
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <div class="card" style="width: 30rem;">
+        <img src="assets/images/tee-shirt-homme1.png" class="card-img-top" alt="pull homme" [routerLink]="['/achat_vetement', '71224852']">
+        <div class="card-body">
+            <h5 class="card-title">PULL HOMME:</h5>
+            <p class="card-text"> pull homme tendance en coton disponible en plusieurs couleurs et tailles pour tout les genres </p>
+            <p>Référence: 71224852</p>
+            <p>Prix: 80DT</p>
+            <p>Couleurs disponible: Beige, Noir, Rouge, Blanc, Marron, Bleu</p>
+            <p>Taille: L, M, S, XL, XS </p>
+            <div class="btn">
+                <button class="btn btn-outline-secondary" routerLink="/paniersproduits">Ajouter au panier</button>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="width: 30rem;">
+        <img src="assets/images/tee-shirt-homme2.png" class="card-img-top" alt="pull homme " [routerLink]="['/achat_vetement', '0311224852']">
+        <div class="card-body">
+            <h5 class="card-title">PULL HOMME:</h5>
+            <p class="card-text"> pull homme tendance disponible en plusieurs couleurs et tailles pour tout les genres </p>
+            <p>Référence: 0311224852</p>
+            <p>Prix: 70DT</p>
+            <p>Couleurs disponible: Blanc, Noir , Bleu</p>
+            <p>Taille: L, M, S, XL, XS  </p>
+            <div class="btn">
+                <button class="btn btn-outline-secondary" routerLink="/paniersproduits">Ajouter au panier</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card" style="width: 30rem;">
+        <img src="assets/images/tee-shirt-homme3.png" class="card-img-top" alt="pull homme" [routerLink]="['/achat_vetement', '781224852']">
+        <div class="card-body">
+            <h5 class="card-title">PULL HOMME:</h5>
+            <p class="card-text"> pull homme tendance en coton disponible en plusieurs couleurs et tailles pour tout les genres </p>
+            <p>Référence: 781224852</p>
+            <p>Prix: 50DT</p>
+            <p>Couleurs disponible: Beige, Noir, Blanc, Bleu</p>
+            <p>Taille: L, M, S, XL, XS</p>
+            <div class="btn">
+                <button class="btn btn-outline-secondary" routerLink="/paniersproduits">Ajouter au panier</button>
+            </div>
+        </div>
+
+
+        <div *ngFor="let item of produit " class="card" style="width: 30rem;">
+            <img [src]="item.image_url" class="card-img-top" alt="Image du produit" >
+            <div class="card-body">
+                <h5 class="card-title">{{item.nom-produit}}</h5>
+                <p class="card-text">{{item.description}}</p>
+                <p>Référence:{{item.references}}</p>
+                <p>Prix:{{item.prix}}€</p>
+                <p>Couleur{{item.couleurs}}</p>
+                <p>Tailles:{{item.tailles}}</p>
+                <div class="btn">
+                    <button class="btn btn-outline-secondary" (click)="ajouteraupanier(item.id, 1)">Ajouter au panier</button>
+                </div>
+            </div>
+    
+    </div>
+</div>
+

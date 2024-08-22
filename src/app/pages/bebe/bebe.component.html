@@ -1,0 +1,32 @@
+<div class="container">
+    <a [routerLink]="['/femme']">Femme</a>
+    <a [routerLink]="['/homme']">Homme</a>
+    <a [routerLink]="['/enfant']">Enfant</a>
+    <button class="btn btn-danger">Bébé</button>
+    
+</div>
+
+<main id="main-content" class="NaNa DPR">
+    <div class="sidebar">
+        <div class="categories">
+            <h3>GENRE:</h3>
+            <ul class="child">
+                <li [routerLink]="[]" fragment="Fille-bebe" style="cursor: pointer;">Fille</li>
+                <li [routerLink]="[]" fragment="garçon-bebe" style="cursor: pointer;">Garçon</li>
+            </ul>
+        </div>
+
+        <div class="NaNa f_EK __65ye">
+            <div id="Fille-bebe">
+                <a [routerLink]="['/accessoire-bebe-fille']"><img src="assets/img2.jpg" class="gg" alt="Fille-bebe"></a>
+            </div>
+            <br><br>
+
+            <div id="garçon-bebe">
+                <a [routerLink]="['/sac-bebe-garcon']"><img src="assets/img2.jpg" class="gg" alt="Garçon-bebe"></a>
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+</main>

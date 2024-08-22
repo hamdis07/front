@@ -1,0 +1,122 @@
+.payment-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+.inactive {
+    color: lightgray;
+    border-bottom: none;
+}
+
+.payment-info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #f9f9f9;
+}
+
+.payment-method {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.method-options {
+    display: flex;
+}
+
+.method-options span {
+    margin-left: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.method-options .active {
+    text-decoration: underline;
+}
+
+.billing-address,
+.order-summary {
+    margin-bottom: 20px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.address-details {
+    padding-left: 20px;
+}
+
+.order-summary .item {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.order-summary .item img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-price {
+    font-weight: bold;
+}
+
+.totals {
+    margin-top: 20px;
+}
+
+.total-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.continue-button {
+    text-align: center;
+}
+
+.continue-button button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.continue-button p {
+    color: lightgray;
+    margin-top: 10px;
+}
+
+.divider {
+    border: none;
+    border-top: 2px solid black;
+    margin: 20px 0;
+}

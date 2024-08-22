@@ -1,26 +1,38 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {  HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CompteComponent } from './compte/compte.component';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { HistoriqueComponent } from './historique/historique.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { AccueilComponent } from './accueil/accueil.component';
-import { FemmeComponent } from './femme/femme.component';
-import { HommeComponent } from './homme/homme.component';
-import { EnfantComponent } from './enfant/enfant.component';
-import { BebeComponent } from './bebe/bebe.component';
-import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from './home/home.component';
-import { AccessoireComponent } from './accessoire/accessoire.component';
-import { SacsComponent } from './sacs/sacs.component';
-import { VetementComponent } from './vetement/vetement.component';
-import { PanierComponent } from './panier/panier.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { HomeComponent } from './component/home/home.component';
+import { AccessoireBebeFilleComponent } from './pages/accessoire-bebe-fille/accessoire-bebe-fille.component';
+import { AccessoireEnfantFilleComponent } from './pages/accessoire-enfant-fille/accessoire-enfant-fille.component';
+import { AccessoireComponent } from './pages/accessoire/accessoire.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
+import { BebeComponent } from './pages/bebe/bebe.component';
+import { ChemiseFemmeComponent } from './pages/chemise-femme/chemise-femme.component';
+import { CompteComponent } from './pages/compte/compte.component';
+import { DescriptionVetementsComponent } from './pages/description-vetements/description-vetements.component';
+import { DescriptionComponent } from './pages/description/description.component';
+import { EnfantComponent } from './pages/enfant/enfant.component';
+import { FemmeComponent } from './pages/femme/femme.component';
+import { HistoriqueComponent } from './pages/historique/historique.component';
+import { HommeComponent } from './pages/homme/homme.component';
+import { InformationPageComponent } from './pages/information-page/information-page.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { PanierComponent } from './pages/panier/panier.component';
+import { PaniersproduitsComponent } from './pages/paniersproduits/paniersproduits.component';
+import { PayementComponent } from './pages/payement/payement.component';
+import { PolitiqueUtilisationComponent } from './pages/politique-utilisation/politique-utilisation.component';
+import { PullHommeComponent } from './pages/pull-homme/pull-homme.component';
+import { SacBebeGarconComponent } from './pages/sac-bebe-garcon/sac-bebe-garcon.component';
+import { SacEnfantGarconComponent } from './pages/sac-enfant-garcon/sac-enfant-garcon.component';
+import { SacHommeComponent } from './pages/sac-homme/sac-homme.component';
+import { SacsComponent } from './pages/sacs/sacs.component';
+import { ServiceClientPageComponent } from './pages/service-client-page/service-client-page.component';
+import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -39,10 +51,23 @@ import { PanierComponent } from './panier/panier.component';
     HomeComponent,
     AccessoireComponent,
     SacsComponent,
-    VetementComponent,
     PanierComponent,
-   
-    
+    ChemiseFemmeComponent,
+    PaniersproduitsComponent,
+    DescriptionComponent,
+    PolitiqueUtilisationComponent,
+    DescriptionVetementsComponent,
+    PullHommeComponent,
+    SacHommeComponent,
+    AccessoireEnfantFilleComponent,
+    SacEnfantGarconComponent,
+    AccessoireBebeFilleComponent,
+    SacBebeGarconComponent,
+    PayementComponent,
+    ServiceClientPageComponent,
+    InformationPageComponent,
+
+
   ],
   imports: [
     BrowserModule,

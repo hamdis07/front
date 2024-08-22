@@ -1,0 +1,223 @@
+
+<h5 class="ccc">Vétements</h5>
+<div class="horizontal-line"></div>
+
+<div class="content-container">
+    
+    <div class="column-left">
+        <div class="purchase-page" *ngIf="product">
+            <div class="image-container">
+                <img [src]="product.image" alt="{{product.title}}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <div class="vertical-line"></div>
+
+    <div class="column-right">
+        <div class="horizontal-table">
+            <div class="table-item">
+                <p>NORMAL</p>
+            </div>
+            <div class="table-item">
+                <p>ROTATION</p>
+            </div>
+            <div class="table-item">
+                <p>SON</p>
+            </div>
+        </div>
+        <div class="horizontal-table-line"></div>
+        <div class="description-section">
+            <h2>{{product.title}}</h2>
+            <p>Référence: {{product.id}}</p>
+        </div>
+        <div class="conta">
+            <span class="debut" (click)="showModal('sizeGuideModal')">GUIDE DES TAILLES</span>
+            <span class="fin" (click)="showModal('shippingReturnModal')">LIVRAISON ET RETOUR</span>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="size">TAILLE</label>
+            <select id="size" name="size">
+                <option value="L">L - Deux articles restants</option>
+                <option value="M">M - Trois articles restants</option>
+                <option value="S">S - Quatre articles restants</option>
+            </select>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn-outline-secondary" routerLink="/paniersproduits">Ajouter au panier</button>
+        </div>
+        <h5 class="cv">Description:</h5>
+        <div class="description-section2">
+            <ul>
+                <li>Prix: {{product.price}}</li>
+                <li>Couleurs disponibles: {{product.colors}}</li>
+                <li>Taille: {{product.size}}</li>
+                <li>{{product.description}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="sizeGuideModal" class="modal">
+    <div class="modal-content  fixed-size-modal ">
+        <span class="close" (click)="closeModal('sizeGuideModal')">&times;</span>
+        <div class="guide-container">
+            <table class="guide-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Guide des tailles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2" class="image-cell">
+                            <img [src]="product.image" alt="{{product.title}}" class="img-fluid">
+                        </td>
+                        <td class="description-cell">
+                            <h4>DESCRIPTION</h4>
+                            <p>{{product.description}}</p>
+                            <ul>
+                                <li>Prix: {{product.price}}</li>
+                                <li>Couleurs disponibles: {{product.colors}}</li>
+                                <li>Taille: {{product.size}}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-row">
+                <button class="btn-size1">CM</button>
+                <button class="btn-size">INCH</button>
+                <button class="btn-country" style="text-decoration-line: underline;">CHANGER PAYS</button>
+            </div>
+            <table class="size-table">
+                <thead>
+                    <tr>
+                        <th>TAILLE ETIQUETTE </th>
+                        <th>TAILLE PAYS (FR)</th>
+                        <th>POITRINE</th>
+                        <th>TAILLE</th>
+                        <th>EPAULES</th>
+                        <th>HANCHES</th>
+                    </tr>
+            </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            <div class="note">
+                <p>VOUS AVEZ UN DOUTE CONCERNANT LA TAILLE À CHOISIR ?</p>
+                <p>En contactant le service client, j’accepte que mes données soit transférées hors de mon pays/ma région.
+                Nous appeler +33 7 49 49 23 68 Lun-Sam 10h00 – 19h00</p>
+                <p>Envoyer un email Nous vous répondrons dans un délai de 24 heures</p>
+            </div>
+    </div>
+</div>
+
+<div id="shippingReturnModal" class="modal">
+    <div class="modal-content white-strip">
+        <span class="close" (click)="closeModal('shippingReturnModal')">&times;</span>
+        <div class="size-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="3">Livraison et retour : France</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Livraison standard à domicile</td>
+                        <td>Livraison standard à domicile</td>
+                        <td>OFFERT</td>
+                    </tr>
+                    <tr>
+                        <td>Livraison standard en point relais</td>
+                        <td>Livraison standard en point relais</td>
+                        <td>OFFERT</td>
+                    </tr>
+                    <tr>
+                        <td>Livraison express à domicile</td>
+                        <td>Livraison express à domicile</td>
+                        <td>10 EUR</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">
+            Il est possible de rendre ou échanger un ou plusieurs articles dans un délai de 30 jours à compter de la date de livraison de la commande.<br>
+            Pour ce faire, il est nécessaire de remplir le Formulaire de retour et d'échange puis de contacter UPS afin d'organiser le retrait du colis.
+        </div>
+    </div>
+</div>
