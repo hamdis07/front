@@ -1,0 +1,52 @@
+<div *ngIf="produit" class="product-detail-page container">
+  <div class="product-header">
+    <h1 class="product-title">{{ produit.nom_produit }}</h1>
+    <p class="product-references">Référence: {{ produit.references }}</p>
+  </div>
+
+  <div class="product-main">
+    <div class="product-image-container">
+      <img [src]="allImages[currentIndex]" alt="Image du produit" class="main-product-image" [style.transform]="'rotate(' + imageRotation + 'deg)'">
+      <button class="carousel-button prev" (click)="prevImage()">&#9664;</button>
+      <button class="carousel-button next" (click)="nextImage()">&#9654;</button>
+      <button class="rotate-button" (click)="rotateImage()">⟳ Rotate</button>
+    </div>
+
+    <div class="product-info">
+      <p class="product-description"><strong>Description :</strong>{{ produit.description }}</p>
+      <p class="product-entretien"><strong>Entretien :</strong> {{ produit.entretien }}</p>
+      <p class="product-composition"><strong>Composition :</strong> {{ produit.composition }}</p>
+      <p class="product-price"><strong>Prix :</strong> {{ produit.prix }} TND</p>
+
+      <div *ngIf="categories?.length || souscategories?.length" class="product-categories">
+        <h3>Catégories et Sous-catégories:</h3>
+        <ul>
+          <li *ngFor="let category of categories" class="category">{{ category }}</li>
+          <li *ngFor="let souscategorie of souscategories" class="subcategory">{{ souscategorie }}</li>
+        </ul>
+      </div>
+
+      <div *ngIf="quantites.length > 0" class="product-quantities">
+        <h3>Quantités disponibles:</h3>
+        <ul>
+          <li *ngFor="let quantite of quantites" class="quantity">
+            Magasin: {{ quantite.magasin }}, Taille: {{ quantite.taille }}, Couleur: {{ quantite.couleur }}, Quantité: {{ quantite.quantite }}
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="produit.promotion" class="product-promotion">
+        <h3>Promotion:</h3>
+        <p>{{ produit.promotion.description }} - Réduction: {{ produit.promotion.reduction }}%</p>
+        <p class="promotion-price">Prix après réduction: {{ produit.prix - (produit.prix * produit.promotion.reduction / 100) }} TND</p>
+      </div>
+
+      <div *ngIf="genre" class="product-genre">
+        <h3>Genre:</h3>
+        <p>{{ genre }}</p>
+      </div>
+
+      <button class="add-to-cart-button" (click)="addToCart(produit)">Ajouter au panier</button>
+    </div>
+  </div>
+</div>

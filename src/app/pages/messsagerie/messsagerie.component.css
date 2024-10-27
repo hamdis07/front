@@ -1,0 +1,17 @@
+.message-card {
+  transition: box-shadow 0.3s ease;
+}
+
+.message-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.user-image {
+  width: 50px; /* Ajustez la taille de l'image de l'utilisateur */
+  height: 50px; /* Ajustez la taille de l'image de l'utilisateur */
+  border-radius: 50%; /* Donne une forme ronde à l'image */
+}
+
+.user-name {
+  font-weight: bold;
+}

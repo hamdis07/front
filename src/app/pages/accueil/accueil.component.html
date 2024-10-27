@@ -1,31 +1,85 @@
-<div class="container">
-    <a [routerLink]="['/femme']">Femme</a>
-    <a [routerLink]="['/homme']">Homme</a>
-    <a [routerLink]="['/enfant']">Enfant</a>
-    <a [routerLink]="['/bebe']">Bébé</a>
-</div>
+<div class="accueil-container">
+  <!-- Sidebar for Categories and Subcategories -->
+  <div class="sidebar">
+    <h3>Catégories</h3>
+    <ul class="category-list">
+      <li *ngFor="let category of categories"
+          (mouseenter)="onCategoryHover(category.id)"
+          (mouseleave)="onCategoryHover(null)">
+        <a (click)="onCategorySelect(category.id)" class="category-link">
+          {{ category.nom }}
+        </a>
+        <ul class="subcategory-list" *ngIf="hoveredCategory === category.id">
+          <li *ngFor="let subCategory of category.sous_categories">
+            <a (click)="onSubCategorySelect(subCategory.id)" class="subcategory-link">
+              {{ subCategory.nom }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-
-
-
-<div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="assets/img1.webp" class="d-block w-100" alt="">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/img3.webp" class="d-block w-100" alt="">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/img2.jpg" class="d-block w-100" alt="">
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Genres Centered -->
+    <div class="genres">
+      <!-- <h2>Genre</h2> -->
+      <div class="genre-list">
+        <div *ngFor="let genre of genres"
+             class="genre-item"
+             [ngClass]="{'active-genre': selectedGenre?.id === genre.id}"
+             (click)="onGenreSelect(genre.id)">
+          {{ genre.nom }}
+        </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+<br>
+    <!-- Search, Filters, and Promotions -->
+    <div class="filters">
+      <input
+      type="text"
+      placeholder="Rechercher un produit..."
+      class="search-input"
+      (input)="onSearch($event)"
+    />      <button (click)="onFilterClick('new')" [ngClass]="{'active-filter': activeFilter === 'new'}">Nouveautés</button>
+      <button (click)="onFilterClick('popular')" [ngClass]="{'active-filter': activeFilter === 'popular'}">Populaires</button>
+      <button (click)="onFilterClick('promo')" [ngClass]="{'active-filter': activeFilter === 'promo'}">Promotions</button>
+    </div>
+
+    <div class="product-grid">
+      <div *ngFor="let produit of filteredProduits"
+           class="product-card"
+           (click)="goToProductDetail(produit.id)">
+        <!-- Bannière de promotion si le produit est en promo -->
+        <div *ngIf="produit.enPromo" class="promo-banner">
+          En promo - {{ produit.promo.pourcentage_reduction }}% de réduction
+        </div>
+
+        <!-- Image du produit -->
+        <img [src]="produit.image_url" alt="{{ produit.nom_produit }}" />
+
+        <!-- Informations sur le produit -->
+        <div class="product-info">
+          <h4>{{ produit.nom_produit }}</h4>
+          <p>{{ produit.description }}</p>
+
+          <!-- Affichage du prix -->
+          <div *ngIf="produit.enPromo">
+            <!-- Ancien prix barré -->
+            <p class="old-price">{{ produit.prix }} DT</p>
+            <!-- Nouveau prix après réduction -->
+            <p class="new-price">{{ produit.prix - (produit.prix * produit.promo.pourcentage_reduction / 100) }} DT</p>
+          </div>
+          <div *ngIf="!produit.enPromo">
+            <!-- Prix normal si pas de promotion -->
+            <p class="price">{{ produit.prix }} DT</p>
+          </div>
+
+          <!-- Bouton ajouter au panier -->
+          <button (click)="addToCart(produit)">Ajouter au panier</button>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

@@ -177,4 +177,7 @@
 /* Fixed-size Modal */
 .fixed-size-modal {
     width: 600px
+}.zoomed img {
+  transform: scale(1.5); /* Zoom in the image */
+  transition: transform 0.3s ease;
 }

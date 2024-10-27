@@ -1,6 +1,35 @@
-<div class="cart-container">
+<div class="parent-container">
+  <div class="cart-container" *ngIf="!isEmpty; else emptyCart">
     <h2>PANIER</h2>
     <hr>
-    <p class="empty-cart-message">Votre panier est vide.</p>
-    <button class="shop-button" [routerLink]="['/accueil']">REPRENDRE LE SHOPPING</button>
+    <form>
+      <div *ngFor="let produit of panier; let i = index" class="product-item">
+        <div class="product-details">
+          <input type="checkbox" [(ngModel)]="produit.selected" name="product-{{ i }}">
+          <img [src]="produit.image_url" alt="{{ produit.nom }}" class="product-image">
+          <div class="product-info">
+            <h3>{{ produit.nom }}</h3>
+            <p>Taille: {{ produit.taille }}</p>
+            <p>Couleur: {{ produit.couleur }}</p>
+            <p>Quantité: {{ produit.quantite }}</p>
+            <p>Prix Total: {{ produit.prix_total  }} DT</p>
+          </div>
+          <div class="product-actions">
+            <button type="button" (click)="mettreAJourPanier(produit.produit_id, produit.taille, produit.couleur, produit.quantite)">Mettre à jour</button>
+            <button type="button" (click)="retirerDuPanier(produit.produit_id)">Retirer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passer Commande button -->
+      <button type="button" (click)="passerCommande()" [disabled]="!hasSelectedProducts()">
+        Passer Commande
+      </button>
+    </form>
+  </div>
 </div>
+
+<ng-template #emptyCart>
+  <p class="empty-cart-message">Votre panier est vide.</p>
+  <button class="shop-button" [routerLink]="['/accueil']">REPRENDRE LE SHOPPING</button>
+</ng-template>

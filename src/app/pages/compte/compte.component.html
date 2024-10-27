@@ -1,139 +1,182 @@
+<!-- Success Messages -->
 <div id="success-message" class="success-message" style="display: none;">
-  Votre compte a été créé avec succès
+  Votre compte a été créé avec succès.
 </div>
 
 <div id="success-mess" class="success-message" style="display: none;">
-  Un courriel contenant le lien pour réinitialiser votre mot de passe a été envoyé à l'adresse
-  suivante:{{f.value.adresse}}
+  Un courriel contenant le lien pour réinitialiser votre mot de passe a été envoyé à l'adresse suivante: {{ f.value.adresse }}
 </div>
 
-
+<!-- Login Form -->
 <div class="container">
-
-  <h3>SE CONNECTER</h3> <br>
-  <form class="row g-3" #f="ngForm" (ngSubmit)="login(f)">
-
+  <h3>SE CONNECTER</h3>
+  <br>
+  <form id="login-form" class="row g-3" #f="ngForm" (ngSubmit)="login(f)">
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Adresse électronique</label>
-      <input type="email" class="form-control" placeholder="adresse" name="adresse" #adresse="ngModel" ngModel>
-      <div style="color: red;" *ngIf="adresse.errors?.['required'] && adresse.touched">
+      <input type="email" class="form-control" placeholder="Adresse électronique" name="email" #email="ngModel" ngModel required>
+      <div style="color: red;" *ngIf="email.errors?.['required'] && email.touched">
         Veuillez remplir ce champ.
-      </div> <br>
-      <div class="align">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck">
-        <p class="oo">Rester connecté</p>
-
       </div>
-
-
-
-
     </div>
     <div class="col-md-6">
-      <label for="inputPassword4" class="form-label">Mot de passe </label>
-      <input type="password" class="form-control" placeholder="mot de passe" name="password" #password="ngModel"
-        ngModel>
+      <label for="inputPassword4" class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" placeholder="Mot de passe" name="password" #password="ngModel" ngModel required>
       <div style="color: red;" *ngIf="password.errors?.['required'] && password.touched">
         Veuillez remplir ce champ.
-      </div> <br>
-      <a href="" style="color: black;">Mot de passe oublier?</a>
-
+      </div>
+      <br>
+      <a [routerLink]="['/forgot-password']" style="color: black;">Mot de passe oublié?</a>
     </div>
-
-    <br> <br>
-    <button class="btn btn-dark gg" type="submit" [disabled]="f.invalid">SE CONNECTER</button> <br>
-
-
-
-
-
+    <div class="col-md-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="rememberMe" [(ngModel)]="rememberMe" name="rememberMe">
+        <label class="form-check-label" for="rememberMe">Rester connecté</label>
+      </div>
+    </div>
+    <br>
+    <button class="btn btn-dark gg" type="submit" [disabled]="f.invalid">SE CONNECTER</button>
   </form>
-
 </div>
 
-
-
-
-
+<!-- Registration Form -->
 <div class="container">
-  <h3>S'INSCRIRE</h3> <br>
-
-  <h5>civilité*</h5>
-  <div class="space">
-    <input type="checkbox" class="form-check-input" id="invalidCheck">
-    <label for="invalidCheck" class="form-check-label">M</label>
-
-    <input type="checkbox" class="form-check-input" id="invalidCheck">
-    <label for="invalidCheck" class="form-check-label ss">MME</label>
-
-
-  </div>
-  <form class="row g-3" #form="ngForm" (ngSubmit)="register(form)">
-
-
+  <h3>S'INSCRIRE</h3>
+  <br>
+  <form class="row g-3" #form="ngForm" (ngSubmit)="registre()" novalidate>
+    <!-- Prénom -->
     <div class="col-md-6">
-      <label for="inputPassword4" class="form-label">Prénom </label>
-      <input type="text" class="form-control" placeholder="prenom" required name="prenom" #prenom="ngModel" ngModel>
+      <label for="prenom" class="form-label">Prénom</label>
+      <input type="text" class="form-control" placeholder="Prénom" name="prenom" #prenom="ngModel" [(ngModel)]="user.prenom" required>
       <div style="color: red;" *ngIf="prenom.errors?.['required'] && prenom.touched">
         Veuillez remplir ce champ.
-      </div> <br> <br>
-      <label for="inputPassword4" class="form-label">Adresse électronique* </label>
-      <input type="email" class="form-control" placeholder="adresse" required name="adress" #adress="ngModel" ngModel>
-      <div style="color: red;" *ngIf="adress.errors?.['required'] && adress.touched">
+      </div>
+    </div>
+
+    <!-- Adresse électronique -->
+    <div class="col-md-6">
+      <label for="email" class="form-label">Adresse électronique</label>
+      <input type="email" class="form-control" placeholder="Adresse électronique" name="email" #email="ngModel" [(ngModel)]="user.email" required email>
+      <div style="color: red;" *ngIf="email.errors?.['required'] && email.touched">
         Veuillez remplir ce champ.
       </div>
-
-
+      <div style="color: red;" *ngIf="email.errors?.['email'] && email.touched">
+        Veuillez entrer une adresse électronique valide.
+      </div>
     </div>
+
+    <!-- Nom -->
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Nom*</label>
-      <input type="text" class="form-control" placeholder="nom" required name="nom" #nom="ngModel" ngModel>
+      <label for="nom" class="form-label">Nom</label>
+      <input type="text" class="form-control" placeholder="Nom" name="nom" #nom="ngModel" [(ngModel)]="user.nom" required>
       <div style="color: red;" *ngIf="nom.errors?.['required'] && nom.touched">
         Veuillez remplir ce champ.
-
-      </div> <br> <br>
-      <label for="inputEmail4" class="form-label">Mot de passe*</label>
-      <input type="password" class="form-control" placeholder="mot de passe" required name="passworrd"
-        #passworrd="ngModel" ngModel minlength="8">
-
-      <div style="color: red;" *ngIf="passworrd.errors?.['required'] && passworrd.touched">
-        Veuillez remplir ce champ.
       </div>
-
-      <div style="color: red;" *ngIf="passworrd.touched && passworrd.errors?.['minlength']">
-        Le mot de passe doit être au moins de 8 caractères
-
-      </div>
-
-
-
-
-
-
     </div>
 
+    <!-- Mot de passe -->
+    <div class="col-md-6">
+      <label for="password" class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" placeholder="Mot de passe" name="password" #password="ngModel" [(ngModel)]="user.password" required minlength="8">
+      <div style="color: red;" *ngIf="password.errors?.['required'] && password.touched">
+        Veuillez remplir ce champ.
+      </div>
+      <div style="color: red;" *ngIf="password.errors?.['minlength'] && password.touched">
+        Le mot de passe doit être au moins de 8 caractères.
+      </div>
+    </div>
 
+    <!-- Genre -->
+    <div class="col-md-6">
+      <label for="genre" class="form-label">Genre</label>
+      <select class="form-control" name="genre" #genre="ngModel" [(ngModel)]="user.genre" required>
+        <option value="" disabled selected>Choisir...</option>
+        <option value="Male">Homme</option>
+        <option value="Female">Femme</option>
+        <option value="Other">Autre</option>
+      </select>
+      <div style="color: red;" *ngIf="genre.errors?.['required'] && genre.touched">
+        Veuillez sélectionner un genre.
+      </div>
+    </div>
 
+    <!-- Date de naissance -->
+    <div class="col-md-6">
+      <label for="date_de_naissance" class="form-label">Date de naissance</label>
+      <input type="date" class="form-control" name="date_de_naissance" #date_de_naissance="ngModel" [(ngModel)]="user.date_de_naissance" required>
+      <div style="color: red;" *ngIf="date_de_naissance.errors?.['required'] && date_de_naissance.touched">
+        Veuillez entrer votre date de naissance.
+      </div>
+    </div>
 
+    <!-- Adresse -->
+    <div class="col-md-6">
+      <label for="Addresse" class="form-label">Adresse</label>
+      <input type="text" class="form-control" placeholder="Adresse" name="Addresse" #Addresse="ngModel" [(ngModel)]="user.Addresse" required>
+      <div style="color: red;" *ngIf="Addresse.errors?.['required'] && Addresse.touched">
+        Veuillez entrer votre adresse.
+      </div>
+    </div>
 
+    <!-- Occupation -->
+    <div class="col-md-6">
+      <label for="occupation" class="form-label">Occupation</label>
+      <input type="text" class="form-control" placeholder="Occupation" name="occupation" #occupation="ngModel" [(ngModel)]="user.occupation" required>
+      <div style="color: red;" *ngIf="occupation.errors?.['required'] && occupation.touched">
+        Veuillez entrer votre occupation.
+      </div>
+    </div>
 
-  </form> <br> <br>
-  <div class="align">
-    <input type="checkbox" class="form-check-input" id="invalidCheck">
-    <p>J'accepte l'ensemble des <a href="" style="color: black;">J'accepte l'ensemble des</a>d'Enstallation et
-      Singularité. </p>
+    <!-- État social -->
+    <div class="col-md-6">
+      <label for="etat_social" class="form-label">État social</label>
+      <input type="text" class="form-control" placeholder="État social" name="etat_social" #etat_social="ngModel" [(ngModel)]="user.etat_social" required>
+      <div style="color: red;" *ngIf="etat_social.errors?.['required'] && etat_social.touched">
+        Veuillez entrer votre état social.
+      </div>
+    </div>
 
+    <!-- Numéro de téléphone -->
+    <div class="col-md-6">
+      <label for="numero_telephone" class="form-label">Numéro de téléphone</label>
+      <input type="text" class="form-control" placeholder="Numéro de téléphone" name="numero_telephone" #numero_telephone="ngModel" [(ngModel)]="user.numero_telephone" required>
+      <div style="color: red;" *ngIf="numero_telephone.errors?.['required'] && numero_telephone.touched">
+        Veuillez entrer votre numéro de téléphone.
+      </div>
+    </div>
 
+    <!-- Nom d'utilisateur -->
+    <div class="col-md-6">
+      <label for="user_name" class="form-label">Nom d'utilisateur</label>
+      <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="user_name" #user_name="ngModel" [(ngModel)]="user.user_name" required>
+      <div style="color: red;" *ngIf="user_name.errors?.['required'] && user_name.touched">
+        Veuillez entrer un nom d'utilisateur.
+      </div>
+      <div style="color: red;" *ngIf="user_name.errors?.['unique'] && user_name.touched">
+        Ce nom d'utilisateur est déjà pris.
+      </div>
+    </div>
 
+    <!-- Image de l'utilisateur -->
+    <div class="col-md-6">
+      <label for="user_image" class="form-label">Image de l'utilisateur</label>
+      <input type="file" class="form-control" name="user_image" (change)="onFileSelected($event)" accept="image/*">
+    </div>
 
-  </div>
-  <div class="align">
-    <input type="checkbox" class="form-check-input" id="invalidCheck">
-    <p>Je souhaite recevoir les <a href="" style="color: black;">mises à jour, les alertes produits et les
-        notifications</a>de promotions par courriel. </p>
-  </div>
+    <!-- Conditions d'utilisation -->
+    <div class="col-md-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="terms" [(ngModel)]="user.acceptTerms" name="acceptTerms" required>
+        <label class="form-check-label" for="terms">J'accepte les <a href="#">conditions d'utilisation</a></label>
+        <div style="color: red;" *ngIf="!user.acceptTerms && form.submitted">
+          Vous devez accepter les conditions d'utilisation.
+        </div>
+      </div>
+    </div>
 
-  <br> <br>
-
-
-  <button class="btn btn-dark gg" type="submit" [disabled]="f.invalid">CREER</button>
+    <!-- Bouton d'inscription -->
+    <div class="col-md-12">
+      <button class="btn btn-dark gg" type="submit" [disabled]="form.invalid">S'INSCRIRE</button>
+    </div>
+  </form>
+</div>

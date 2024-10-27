@@ -1,9 +1,30 @@
-.navbar{
-    background-color: white;
-    border: 1px solid black;
+.navbar {
+  background-color: white;
+  border: 1px solid black;
 }
-.dropdown-toggle{
-    background-color: white;
-    border: none;
-   padding-right: 50px;
+
+.dropdown-toggle {
+  background-color: white;
+  border: none;
+  padding-right: 50px;
 }
+
+/* Style pour le formulaire de recherche */
+.search-form {
+  margin-left: 10px; /* Décalage vers la gauche */
+  margin-right: 50px; /* Espace à droite pour éloigner du panier */
+}
+
+.search-input {
+  border: 1px solid black; /* Bordure pour correspondre à la navbar */
+}
+
+.search-button {
+  background-color: transparent; /* Fond transparent */
+  border: 1px solid black; /* Bordure pour le bouton */
+  margin-left: 5px; /* Espacement entre l'input et le bouton */
+}
+.icon-panier {
+  font-size: 50px; /* Augmentez cette valeur selon vos besoins */
+}
+

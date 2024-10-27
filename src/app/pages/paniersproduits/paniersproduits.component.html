@@ -1,49 +1,70 @@
-
 <div class="product-page">
-    <div class="product-image">
-      <img src="path-to-your-image.jpg" alt="product image" />
-    </div>
-    <div class="vertical-line"></div>
-      <div class="product-options">
-        <div class="tab-container">
-          <button class="tab active">NORMAL</button>
-          <button class="tab">ROTATION</button>
-          <button class="tab">SON</button>
-        </div>
-        
-        <div class="product-details">
-            <div class="product-info">
-              <h1>Product Title</h1>
-              <p>Product Description</p>
-              <p>Price: 100 DT</p>
-            </div>
-        
-        <div class="dropdown-container">
-          <label for="size">GUIDES DES TAILLES</label>
-          <select id="size" name="size">
-            <option value="L">L - Deux articles restants</option>
-            <option value="L">M - trois article restants</option>
-            <option value="L">S - quatre articles restants</option>
-          </select>
-        </div>
-      </div>
-  
-      <div class="actions">
-        <button class="btn-add">AJOUTER UN AUTRE</button>
-        <button class="btn-checkout" routerLink="/payement">PROCEDER AU PAIEMENT</button>
-      </div>
-  
-      <div class="description">
-        <h3>DESCRIPTION</h3>
-        <p>Le mannequin mesure 187 cm et porte une taille L</p>
-        <ul>
-          <li>100% cotton</li>
-          <li>Col montant</li>
-          <li>Manches larges</li>
-          <li>Fabriqué en Italie</li>
-          <li>Nettayage à 40°C</li>
-        </ul>
+  <div class="product-image">
+    <img [src]="produit.image_url" alt="product image" />
+    <div class="product-images">
+      <div *ngFor="let image of imagesDisponibles">
+        <img [src]="image" alt="Product Image" class="product-image" />
       </div>
     </div>
   </div>
-  
+
+  <div class="vertical-line"></div>
+
+  <div class="product-options">
+    <div class="tab-container">
+      <button class="tab" (click)="rotateImage()">ROTATION</button>
+      <button class="tab" (click)="flashImage()">FLASH</button>
+      <button class="tab" (click)="toggleZoom()">ZOOM</button>
+    </div>
+
+    <div class="product-details">
+      <div class="product-info">
+        <h1>{{ produit?.nom_produit }}</h1>
+        <p>{{ produit?.description }}</p>
+        <p>Prix: {{ produit?.prix }} DT</p>
+      </div>
+
+      <div class="product-selections">
+        <h3>Sélectionner les tailles, couleurs et quantités</h3>
+        <div *ngFor="let selection of selections; let i = index">
+          <div class="product-quantity">
+            <label for="quantity">Quantité :</label>
+            <input type="number" id="quantity" [(ngModel)]="selection.quantite" min="1" />
+          </div>
+
+          <div class="dropdown-container">
+            <label for="size">Taille :</label>
+            <select id="size" [(ngModel)]="selection.taille">
+              <option *ngFor="let taille of taillesDisponibles" [value]="taille.nom">
+                {{ taille.nom }}
+              </option>
+            </select>
+          </div>
+
+          <div class="dropdown-container">
+            <label for="color">Couleur :</label>
+            <select id="color" [(ngModel)]="selection.couleur">
+              <option *ngFor="let couleur of couleursDisponibles" [value]="couleur.nom">
+                {{ couleur.nom }}
+              </option>
+            </select>
+          </div>
+
+          <button class="btn-remove" (click)="supprimerSelection(i)">Supprimer cette sélection</button>
+        </div>
+
+        <button class="btn-add-selection" (click)="ajouterNouvelleSelection()">Ajouter une autre sélection</button>
+      </div>
+
+      <div class="actions">
+        <button class="btn-add" (click)="ajouterProduitAuPanier()">AJOUTER AU PANIER</button>
+        <button class="btn-checkout" routerLink="/commander">PROCEDER AU PAIEMENT</button>
+      </div>
+
+      <div class="description">
+        <h3></h3>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>

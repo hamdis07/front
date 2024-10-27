@@ -1,30 +1,46 @@
 <div class="container">
-    <a [routerLink]="['/femme']">Femme</a>
-    <button class="btn btn-danger">Homme</button>
-    <a [routerLink]="['/enfant']">Enfant</a>
-    <a [routerLink]="['/bebe']">Bébé</a>
+  <a [routerLink]="['/femme']">Femme</a>
+  <button class="btn btn-danger">Homme</button>
+  <a [routerLink]="['/enfant']">Enfant</a>
+  <a [routerLink]="['/bebe']">Bébé</a>
 </div>
-<main id="main-content" class="NaNa DPR">
+<br>
+<br>
+<br>
+<br>
+<div class="sidebar">
+  <div class="categories">
+    <h3>CATEGORIES:</h3>
+    <ul class="child">
+      <li *ngFor="let category of categories" (click)="toggleSubCategories(category.id)" [class.show]="category.showSubCategories">
+        {{ category.nom }}
+        <span>
+          <i class="fa fa-chevron-down" *ngIf="!category.showSubCategories"></i>
+          <i class="fa fa-chevron-up" *ngIf="category.showSubCategories"></i>
+        </span>
+        <ul *ngIf="category.showSubCategories">
+          <li *ngFor="let sousCategorie of category.sousCategories" (click)="filterBySousCategorie(sousCategorie.id)">
+            {{ sousCategorie.nom }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
 
-    <div class="sidebar">
-        <div class="categories">
-            <h3>CATEGORIES:</h3>
-            <ul class="child">
-                <li [routerLink]="[]" fragment="vetements" style="cursor: pointer;">VÊTEMENTS</li>
-                <li [routerLink]="[]" fragment="sacs" style="cursor: pointer;">SACS</li>
-            </ul>
-        </div>
-        <div class="NaNa f_EK __65ye">
-
-        
-            <div id="vetements">
-                <a [routerLink]="['/pull-homme']"><img src="assets/img2.jpg" class="gg" alt="Vêtements"></a>
-            </div> <br><br>
-
-            <div id="sacs">
-                <a [routerLink]="['/sac-homme']"><img src="assets/img2.jpg" class="gg" alt="Sacs"></a>
-            </div>
-        </div>
+<div class="product-grid">
+  <div *ngFor="let produit of filteredProduits" class="product-item">
+    <div class="product-image">
+      <a [routerLink]="['/produit', produit.id]">
+        <img [src]="getImageUrl(produit.image_url)" alt="{{ produit.nom_produit }}" />
+      </a>
     </div>
-
-</main>
+    <div class="product-details">
+      <h4>{{ produit.nom_produit }}</h4>
+      <p>{{ produit.description }}</p>
+      <p>Prix: {{ produit.prix }} TND</p>
+      
+      <button class="btn btn-primary" (click)="addToCart(produit)">Ajouter au panier</button>
+    </div>
+  </div>
+</div>

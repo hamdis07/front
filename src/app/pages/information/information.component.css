@@ -1,0 +1,25 @@
+.container {
+  max-width: 600px; /* Set a max width for the container */
+  margin: auto; /* Center the container */
+}
+
+.card {
+  border-radius: 10px; /* Rounded corners for the card */
+  border: none; /* Remove the border */
+}
+
+.card-body {
+  padding: 2rem; /* Add some padding */
+}
+
+.img-fluid {
+  transition: transform 0.2s; /* Add a hover effect */
+}
+
+.img-fluid:hover {
+  transform: scale(1.05); /* Scale the image slightly on hover */
+}
+
+.btn {
+  font-weight: bold; /* Make the button text bold */
+}

@@ -1,0 +1,47 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Messages Reçus</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngFor="let message of receivedMessages" class="message-card mb-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <img [src]="message.user_image" alt="{{ message.user_name }}" class="user-image me-3" />
+          <div>
+            <h5 class="user-name mb-0">{{ message.user_name }}</h5>
+            <small class="text-muted">{{ message.created_at | date: 'short' }}</small>
+          </div>
+        </div>
+        <p class="mt-3">{{ message.content }}</p>
+
+        <!-- Affichage des pièces jointes -->
+        <div *ngIf="message.attachments?.length > 0" class="attachments mt-3">
+          <h6>Pièces jointes :</h6>
+          <ul class="list-unstyled">
+            <li *ngFor="let attachment of message.attachments">
+              <!-- Vérifier si l'attachement est une image -->
+              <ng-container *ngIf="isImage(attachment.url); else otherFile">
+                <img [src]="attachment.url" alt="Image jointe" class="img-thumbnail" style="max-width: 200px;" />
+              </ng-container>
+              <!-- Autres types de fichiers -->
+              <ng-template #otherFile>
+                <a [href]="attachment.url" target="_blank" class="btn btn-link">Télécharger {{ attachment.filename }}</a>
+              </ng-template>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Répondre à un message -->
+        <button class="btn btn-primary mt-3" (click)="toggleReplyForm(message.id)">Répondre</button>
+
+        <div *ngIf="message.showReplyForm" class="mt-2">
+          <textarea [(ngModel)]="replyContent[message.id]" class="form-control" placeholder="Écrire votre réponse..."></textarea>
+          <button class="btn btn-success mt-2" (click)="sendReply(message.id)">Envoyer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

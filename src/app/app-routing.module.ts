@@ -24,15 +24,35 @@ import { PullHommeComponent } from './pages/pull-homme/pull-homme.component';
 import { SacBebeGarconComponent } from './pages/sac-bebe-garcon/sac-bebe-garcon.component';
 import { SacEnfantGarconComponent } from './pages/sac-enfant-garcon/sac-enfant-garcon.component';
 import { SacHommeComponent } from './pages/sac-homme/sac-homme.component';
-import { SacsComponent } from './pages/sacs/sacs.component';
+//import { SacsComponent } from './pages/sacs/sacs.component';
 import { ServiceClientPageComponent } from './pages/service-client-page/service-client-page.component';
-
-
+import { ProductDetailComponent } from './pages/homme/product-detail.component';
+import { CommandeComponent } from './pages/commande/commande.component';
+import { MessageComponent } from './pages/message/message.component';
+import { InformationComponent } from './pages/information/information.component';
+import { ModifierInformationComponent } from './pages/modifier-information/modifier-information.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { PaniermodifierComponent } from './pages/paniermodifier/paniermodifier.component';
+import { MesssagerieComponent } from './pages/messsagerie/messsagerie.component';
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
+  { path: 'accueil/:genreSlug', component: AccueilComponent }, // Dynamic route for genres
+
   { path: '', component: HomeComponent },
+  {path: 'messagerie', component :MesssagerieComponent},
+  { path: 'produit/:id', component: ProductDetailComponent },
+  { path: 'commander', component: CommandeComponent },
+  { path: 'consulter', component: InformationComponent },
+  { path: 'modifiercoordonne', component: ModifierInformationComponent },
+
+  { path: 'messages', component: MessageComponent },  // Ensure ':id' is present in the route
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'panier/modifier/:id', component: PaniermodifierComponent },
+
   { path: 'panier', component: PanierComponent },
-  { path: 'paniersproduits', component: PaniersproduitsComponent },
+  { path: 'paniersproduits/:id', component: PaniersproduitsComponent },
   { path: 'achat_hors_vetement/:id', component: DescriptionComponent },
   { path: 'achat_vetement/:id', component: DescriptionVetementsComponent },
   { path: 'compte', component: CompteComponent },
@@ -42,7 +62,7 @@ const routes: Routes = [
   { path: 'accessoire-bebe-fille', component: AccessoireBebeFilleComponent},
   { path: 'historique', component: HistoriqueComponent },
   { path: 'politique-utilisation', component: PolitiqueUtilisationComponent},
-  { path: 'sacs', component: SacsComponent },
+ // { path: 'sacs', component: SacsComponent },
   { path: 'homme', component: HommeComponent },
   { path: 'pull-homme', component:PullHommeComponent},
   { path: 'sac-homme', component:SacHommeComponent},

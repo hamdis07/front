@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ReclamerComponent } from './reclamer.component';
+
+describe('ReclamerComponent', () => {
+  let component: ReclamerComponent;
+  let fixture: ComponentFixture<ReclamerComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ ReclamerComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(ReclamerComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Informations Utilisateur</h2>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="user" class="card shadow">
+    <div class="card-body">
+      <div class="text-center mb-3">
+        <img *ngIf="user.user_image" [src]="user.user_image" alt="User Image" class="img-fluid rounded-circle" style="width: 150px; height: 150px;" />
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <p><strong>Nom:</strong> {{ user.nom }}</p>
+          <p><strong>Prénom:</strong> {{ user.prenom }}</p>
+          <p><strong>Genre:</strong> {{ user.genre }}</p>
+        </div>
+        <div class="col">
+          <p><strong>Date de Naissance:</strong> {{ user.date_de_naissance | date }}</p>
+          <p><strong>Adresse:</strong> {{ user.Addresse }}</p>
+          <p><strong>Occupation:</strong> {{ user.occupation }}</p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <p><strong>État Social:</strong> {{ user.etat_social }}</p>
+        <p><strong>Numéro de Téléphone:</strong> {{ user.numero_telephone }}</p>
+        <p><strong>Nom d'utilisateur:</strong> {{ user.user_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+      </div>
+      <button (click)="goToModifier()" class="btn btn-primary btn-block">Modifier Informations</button>
+    </div>
+  </div>
+</div>

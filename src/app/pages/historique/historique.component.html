@@ -1,34 +1,54 @@
 <app-sidebar></app-sidebar>
-<main class="main-content">
-    <h2>RETOUR : 001</h2>
+<main class="main-content" *ngIf="commandes && commandes.length > 0">
+  <h2>Historique des commandes</h2>
+
+  <div *ngFor="let commande of commandes">
+    <h3>Commande : {{ commande.id }}</h3>
     <div class="order-info">
-        <div class="order-date">
-            <label>Date de la commande</label>
-            <input type="text" value="December 16, 2019 10:03" disabled>
-        </div>
-        <div class="order-status">
-            <label>État</label>
-            <input type="text" value="Expédié" disabled>
-        </div>
+      <div class="order-date">
+        <label>Date de la commande</label>
+        <input type="text" [value]="commande.created_at | date: 'long'" disabled>
+      </div>
+      <div class="order-status">
+        <label>État</label>
+        <input type="text" [value]="commande.statut" disabled>
+      </div>
     </div>
 
-    <div class="product-list">
-        <div class="product-item">
-            <img src="tshirt-image.jpg" alt="Tee-shirt jaune noir">
-            <div class="product-details">
-                <h3>AFFIX</h3>
-                <p>Tee-shirt jaune noir<br>Taille : M<br>Quantité : 1</p>
-                <div class="final-sale">
-                    <span>-50%</span>
-                    <p>Ce article est une vente finale<br>Non éligible au retour</p>
-                </div>
-            </div>
-            <div class="product-price">
-                <span>100 DT</span>
-                <label><input type="checkbox"> Retourner ce produit</label>
-            </div>
+    <div class="product-list" *ngFor="let produit of commande.produits">
+      <div class="product-item">
+        <img [src]="produit.image_url" [alt]="produit.nom_produit">
+        <div class="product-details">
+          <h4>{{ produit.nom_produit }}</h4>
+          <p>{{ produit.description }}<br>
+          Taille : {{ produit.pivot.taille }}<br>
+          Couleur : {{ produit.pivot.couleur }}<br>
+          Quantité : {{ produit.pivot.quantite }}</p>
         </div>
+        <div class="product-price">
+          <span>{{ produit.pivot.prix_total }} DT</span>
+        </div>
+      </div>
     </div>
 
-    <button class="return-button">DEMANDER UN RETOUR</button>
+    <h4>Informations de livraison</h4>
+    <div class="delivery-info">
+      <p>Adresse: {{ commande.livraisondetails.adresse }}</p>
+      <p>Ville: {{ commande.livraisondetails.ville }}</p>
+      <p>Code postal: {{ commande.livraisondetails.code_postal }}</p>
+      <p>Téléphone: {{ commande.livraisondetails.telephone }}</p>
+    </div>
+
+    <h4>Informations de paiement</h4>
+    <div class="payment-info">
+      <p>Méthode de paiement: {{ commande.methode_paiement  }}</p>
+      <p>Total payé: {{ commande.montant_total || '0 DT' }}</p>
+    </div>
+
+    <hr> <!-- Ligne de séparation entre les commandes -->
+  </div>
+</main>
+
+<main *ngIf="commandes.length === 0">
+  <p>Aucune commande trouvée pour cet utilisateur.</p>
 </main>

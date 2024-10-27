@@ -1,0 +1,86 @@
+<h2>Passer une commande</h2>
+
+<form [formGroup]="commandeForm" (ngSubmit)="onSubmit()" class="commande-form">
+  <div class="form-group">
+    <label for="adresse">Adresse</label>
+    <input id="adresse" formControlName="adresse" type="text" required>
+  </div>
+
+  <div class="form-group">
+    <label for="ville">Ville</label>
+    <input id="ville" formControlName="ville" type="text" required>
+  </div>
+
+  <div class="form-group">
+    <label for="code_postal">Code postal</label>
+    <input id="code_postal" formControlName="code_postal" type="text" required>
+  </div>
+
+  <div class="form-group">
+    <label for="telephone">Téléphone</label>
+    <input id="telephone" formControlName="telephone" type="text" required>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description" rows="4"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="methode_paiement">Méthode de paiement</label>
+    <select id="methode_paiement" formControlName="methode_paiement">
+      <option value="apres_livraison">Paiement après livraison</option>
+      <option value="par_carte">Paiement par carte</option>
+    </select>
+  </div>
+
+  <!-- Champs supplémentaires pour le paiement par carte -->
+  <div *ngIf="commandeForm.get('methode_paiement')?.value === 'par_carte'" class="card-payment">
+    <div class="form-group">
+      <label for="numero_carte">Numéro de carte</label>
+      <input id="numero_carte" formControlName="numero_carte" type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="nom_detenteur_carte">Nom du détenteur de la carte</label>
+      <input id="nom_detenteur_carte" formControlName="nom_detenteur_carte" type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="mois_validite">Mois de validité</label>
+      <input id="mois_validite" formControlName="mois_validite" type="number">
+    </div>
+
+    <div class="form-group">
+      <label for="annee_validite">Année de validité</label>
+      <input id="annee_validite" formControlName="annee_validite" type="number">
+    </div>
+
+    <div class="form-group">
+      <label for="code_secret">Code secret (CVC)</label>
+      <input id="code_secret" formControlName="code_secret" type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="adresse_facturation">Adresse de facturation</label>
+      <input id="adresse_facturation" formControlName="adresse_facturation" type="text">
+    </div>
+  </div>
+
+  <h3>Produits à commander</h3>
+  <ul class="produit-list">
+    <li *ngFor="let produit of produits" class="produit-item">
+      <p>{{ produit.nom }} -
+      <img [src]="produit.image_url" alt="{{ produit.nom }}" class="produit-image">
+      - Quantité: {{ produit.quantite }}
+      - Taille: {{ produit.taille }}
+      - Couleur: {{ produit.couleur }}
+      - Prix: {{ produit.prix_total | currency:'TND' }}</p> <!-- Utilisation du pipe 'currency' avec 'TND' -->
+    </li>
+  </ul>
+
+  <p class="total">Total: {{ total | currency:'TND':'symbol' }}</p>
+  <p>Frais de livraison: TND {{ fraisLivraison }}</p>
+
+  <button type="submit" [disabled]="commandeForm.invalid" class="submit-button">Confirmer la commande</button>
+</form>

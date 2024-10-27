@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>Contactez un Responsable</h2>
+  <form (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate>
+    <!-- Objet du message -->
+    <div class="form-group">
+      <label for="objet">Objet <span class="text-danger">*</span></label>
+      <input
+        type="text"
+        id="objet"
+        class="form-control"
+        [(ngModel)]="message.objet"
+        name="objet"
+        required
+        aria-label="Objet de votre message">
+      <div *ngIf="contactForm.form.controls['objet']?.invalid && contactForm.form.controls['objet']?.touched" class="text-danger">
+        L'objet est requis.
+      </div>
+    </div>
+
+    <!-- Contenu du message -->
+    <div class="form-group">
+      <label for="content">Votre Message <span class="text-danger">*</span></label>
+      <textarea
+        id="content"
+        class="form-control"
+        [(ngModel)]="message.content"
+        name="content"
+        required
+        rows="4"
+        aria-label="Contenu de votre message"></textarea>
+      <div *ngIf="contactForm.form.controls['content']?.invalid && contactForm.form.controls['content']?.touched" class="text-danger">
+        Le contenu est requis.
+      </div>
+    </div>
+
+    <!-- Fichiers joints -->
+    <div class="form-group">
+      <label for="files">Fichiers (optionnel)</label>
+      <input
+        type="file"
+        id="files"
+        (change)="onFilesSelected($event)"
+        multiple
+        aria-label="Joindre des fichiers optionnels">
+
+      <!-- Affichage des fichiers sélectionnés -->
+      <div *ngIf="selectedFiles.length > 0" class="mt-2">
+        <strong>Fichiers sélectionnés :</strong>
+        <ul>
+          <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bouton d'envoi -->
+    <button type="submit" class="btn btn-primary" [disabled]="!contactForm.form.valid">Envoyer</button>
+  </form>
+
+  <!-- Message de confirmation ou d'erreur -->
+  <div *ngIf="responseMessage" class="alert alert-info mt-3">
+    {{ responseMessage }}
+  </div>
+</div>

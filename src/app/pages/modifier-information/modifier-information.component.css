@@ -1,0 +1,12 @@
+.container {
+  max-width: 600px; /* Set a max width for the container */
+  margin: auto; /* Center the container */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Add some space between form groups */
+}
+
+.btn {
+  font-weight: bold; /* Make the button text bold */
+}

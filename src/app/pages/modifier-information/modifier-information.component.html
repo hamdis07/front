@@ -1,0 +1,90 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Modifier Mes Informations</h2>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <form [formGroup]="modifierForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" formControlName="nom" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input type="text" id="prenom" formControlName="prenom" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genre</label>
+      <select id="genre" formControlName="genre" class="form-control">
+        <option value="">Sélectionner</option>
+        <option value="Male">Homme</option>
+        <option value="Female">Femme</option>
+        <option value="Other">Autre</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="date_de_naissance">Date de Naissance</label>
+      <input type="date" id="date_de_naissance" formControlName="date_de_naissance" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="Addresse">Adresse</label>
+      <input type="text" id="Addresse" formControlName="Addresse" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="occupation">Occupation</label>
+      <input type="text" id="occupation" formControlName="occupation" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="etat_social">État Social</label>
+      <input type="text" id="etat_social" formControlName="etat_social" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="numero_telephone">Numéro de Téléphone</label>
+      <input type="text" id="numero_telephone" formControlName="numero_telephone" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="user_name">Nom d'utilisateur</label>
+      <input type="text" id="user_name" formControlName="user_name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Nouveau Mot de Passe</label>
+      <input type="password" id="password" formControlName="password" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="password_confirmation">Confirmer le Mot de Passe</label> <!-- Updated the label -->
+      <input type="password" id="password_confirmation" formControlName="password_confirmation" class="form-control" /> <!-- Updated formControlName -->
+    </div>
+
+    <div class="form-group">
+      <label for="current_password">Mot de Passe Actuel</label>
+      <input type="password" id="current_password" formControlName="current_password" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label for="user_image">Image de Profil</label>
+      <input type="file" id="user_image" (change)="onFileChange($event)" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="modifierForm.invalid">Mettre à Jour</button>
+  </form>
+</div>
